@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo"Starting Arch Config...."
+echo "Starting Arch Config...."
 sleep 3
 echo " "
-echo"Making GRUB partition..."
+echo "Making GRUB partition..."
 sleep 3
 
 (
@@ -17,7 +17,7 @@ echo w
 echo " "
 sleep 10
 
-echo"Making root partition..."
+echo "Making root partition..."
 sleep 3
 (
 echo n
@@ -36,12 +36,18 @@ echo p
 echo 3
 echo        #Default sector
 echo +1024M #1 GiB for SWAP
-echo w
-echo t #Setting type for SWAP partition.
-echo 3
-echo 82 
+echo w 
 )|fdisk /dev/sda
 echo " "
+sleep 10
+
+(
+echo t
+echo 3
+echo 82
+echo w
+)| fdisk /dev/sda
+echo ""
 sleep 10
 
 (
