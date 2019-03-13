@@ -1,19 +1,24 @@
 #!/bin/bash
 
 echo"Starting Arch Config...."
-printf"\n"
+sleep 3
+echo " "
 echo"Making GRUB partition..."
+sleep 3
+
 (
 echo n
 echo p
 echo 1
-echo  #Default sector
+echo       #Default sector
 echo +400M #400 MiB for GRUB boot loader
 echo w
 ) | fdisk /dev/sda
-printf"\n"
+echo " "
 sleep 10
+
 echo"Making root partition..."
+sleep 3
 (
 echo n
 echo p
@@ -22,33 +27,36 @@ echo  #Default sector
 echo +10G #10 GiB for root partition
 echo w
 )| fdisk /dev/sda
-printf"\n"
+echo " "
 sleep 10
+
 (
 echo n
 echo p
 echo 3
-echo  #Default sector
+echo        #Default sector
 echo +1024M #1 GiB for SWAP
 echo w
 echo t #Setting type for SWAP partition.
 echo 3
 echo 82 
 )|fdisk /dev/sda
-printf"\n"
+echo " "
 sleep 10
+
 (
 echo n
 echo p
 echo 4
 echo 
-echo  #Both default sectors, using remaining disk space for /home.
+echo    #Both default sectors, using remaining disk space for /home.
 echo w
 )|fdisk /dev/sda
-printf"\n"
+echo " "
 sleep 10
+
 echo "Disk Partitioning Finished!"
-printf"\n"
+echo " "
 fdisk -l
 
 
